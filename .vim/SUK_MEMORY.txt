@@ -1,0 +1,83 @@
+This is a file containing stuff about vim I'd like to remmeber but I am scared that I'll forget
+
+FOLDING
+=======
+included with plugin vim-markdown
+
+	Folding is enabled for headers by default.
+
+	The following commands are useful to open and close folds:
+
+	    zr: reduces fold level throughout the buffer
+	    zR: opens all folds
+	    zm: increases fold level throughout the buffer
+	    zM: folds everything all the way
+	    za: open a fold your cursor is on
+	    zA: open a fold your cursor is on recursively
+	    zc: close a fold your cursor is on
+	    zC: close a fold your cursor is on recursively
+
+	Options are available to disable folding or change folding style.
+
+	Try :help fold-expr and :help fold-commands for details.
+
+Standard stuff
+==============
+
+gU	uppercase
+guU	-linewise
+gu	lowercase
+guu	-linewise
+
+<C-X> 	decrement
+<C-A>	increment /change capitalization
+
+
+Text objects:
+-------------
+p	paragraph
+s	sentence
+w 	word
+t	tag
+_	whole line
+
+
+Custom text objects
+-------------
+ii	indent
+ai	above line and indent
+aI	above/below line and indent
+il	inner line
+al	all line
+
+ie	inner entire	everything but whitespaces infront and after
+ae	all entire	everything.
+
+
+Custom Operators:
+================
+
+Surround
+------
+
+look in the included surround.txt in ~/.vim/pack/plugins/start/vim-surround-2.2/doc/surround.txt
+
+Commentary
+------
+and those work as a toggle!
+
+gcc	- comments a line
+gc	- comments a motion (e.g. gcip comments paragraph)
+gcgc 	- uncoments set of adjecent commented lines
+Commentary - you can use this as a command (e.g. for substitutions)
+
+Replace with register
+------
+
+[count]["x]gr{motion}   Replace {motion} text with the contents of register x.
+                        Especially when using the unnamed register, this is
+                        quicker than "_d{motion}P or "_c{motion}<C-R>"
+[count]["x]grr          Replace [count] lines with the contents of register x.
+                        To replace from the cursor position to the end of the
+                        line use ["x]gr$
+{Visual}["x]gr          Replace the selection with the contents of register x.

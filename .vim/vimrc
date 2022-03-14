@@ -1,0 +1,264 @@
+
+" The default vimrc file.
+"
+" Maintainer:	Bram Moolenaar <Bram@vim.org>
+" Last change:	2019 Feb 18
+"
+" This is loaded if no vimrc file was found.
+" Except when Vim is run with "-u NONE" or "-C".
+" Individual settings can be reverted with ":set option&".
+" Other commands can be reverted as mentioned below.
+
+" When started as "evim", evim.vim will already have done these settings.
+if v:progname =~? "evim"
+  finish
+endif
+
+" Bail out if something that ran earlier, e.g. a system wide vimrc, does not
+" want Vim to use these default values.
+if exists('skip_defaults_vim')
+  finish
+endif
+
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+" Avoid side effects when it was already reset.
+if &compatible
+  set nocompatible
+endif
+
+" When the +eval feature is missing, the set command above will be skipped.
+" Use a trick to reset compatible only when the +eval feature is missing.
+silent! while 0
+  set nocompatible
+silent! endwhile
+
+" Allow backspacing over everything in insert mode.
+set backspace=indent,eol,start
+
+set history=200		" keep 200 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set wildmenu		" display completion matches in a status line
+
+set ttimeout		" time out for key codes
+set ttimeoutlen=100	" wait up to 100ms after Esc for special key
+
+" Show @@@ in the last line if it is truncated.
+set display=truncate
+
+" Show a few lines of context around the cursor.  Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching when it's possible to timeout.
+if has('reltime')
+  set incsearch
+endif
+
+" Do not recognize octal numbers for Ctrl-A and Ctrl-X, most users find it
+" confusing.
+set nrformats-=octal
+
+" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries.
+if has('win32')
+  set guioptions-=t
+endif
+
+" Don't use Ex mode, use Q for formatting.
+" Revert with ":unmap Q".
+map Q gq
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+" Revert with ":iunmap <C-U>".
+inoremap <C-U> <C-G>u<C-U>
+
+" In many terminal emulators the mouse works just fine.  By enabling it you
+" can position the cursor, Visually select and scroll with the mouse.
+if has('mouse')
+  set mouse=a
+endif
+
+" Switch syntax highlighting on when the terminal has colors or when using the
+" GUI (which always has colors).
+if &t_Co > 2 || has("gui_running")
+  " Revert with ":syntax off".
+  syntax on
+
+  " I like highlighting strings inside C comments.
+  " Revert with ":unlet c_comment_strings".
+  let c_comment_strings=1
+endif
+
+" Only do this part when Vim was compiled with the +eval feature.
+if 1
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  " Revert with ":filetype off".
+  filetype plugin indent on
+
+  " Put these in an autocmd group, so that you can revert them with:
+  " ":augroup vimStartup | au! | augroup END"
+  augroup vimStartup
+    au!
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid, when inside an event handler
+    " (happens when dropping a file on gvim) and for a commit message (it's
+    " likely a different one than last time).
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+
+  augroup END
+
+endif
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+" Revert with: ":delcommand DiffOrig".
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+if has('langmap') && exists('+langremap')
+  " Prevent that the langmap option applies to characters that result from a
+  " mapping.  If set (default), this may break plugins (but it's backward
+  " compatible).
+  set nolangremap
+endif
+
+"-------------------------------------------------
+"SUKULENT'S CONFIG 
+"-------------------------------------------------
+"
+"some things could be set in the default part of the config above
+"they are repeated when I found out what they are doing and want to know, that I want them 
+
+" Necesary  for lots of cool vim things
+set nocompatible
+
+"check spelling!
+" set spell
+
+"Don't show ruler, I have custom line
+set noruler
+
+
+"turn on line numbers and set the relative mode
+set nu 
+set relativenumber
+
+"word wrap
+set wrap
+set linebreak
+set nolist
+set textwidth=0
+
+"ignore case in search
+set ignorecase
+
+"Undo file in ~/.vim/ so I don't make a mess in directories.
+if has('persistent_undo')         "check if your vim version supports
+  set undodir=$HOME/.vim/undo     "directory where the undo files will be stored
+  set undofile                    "turn on the feature
+endif
+
+"needed for ctrl+shift+c/v
+set clipboard=unnamed
+
+" make txt files get # comment
+autocmd FileType text setlocal commentstring=#\ %s
+
+" for finding files in subdirectories
+set path+=**
+
+"set some invisible characters to be visible
+set listchars=trail:~,tab:\ \ ,nbsp:×
+set list
+
+"tab settings
+set tabstop=8
+set shiftwidth=8
+set softtabstop=0
+set noexpandtab
+
+set copyindent
+set preserveindent
+set autoindent
+
+"colorscheme
+set background=dark
+colorscheme PaperColor
+"colorscheme disco
+"set termguicolors
+
+"statusline settings 
+
+"show partial commands, it can't be incorporated to status line to my knowledge
+set showcmd
+
+
+"the statusline
+"colors!
+hi User1 ctermfg=1
+hi User2 ctermfg=2
+hi User3 ctermfg=3
+hi User4 ctermfg=4
+hi User5 ctermfg=5
+hi User6 ctermfg=6
+hi User7 ctermfg=7
+hi User8 ctermfg=8
+hi User9 ctermfg=9
+
+"reset statusline
+set statusline =""	"file format
+
+"set statusline +=%1*\ %n\ %*	"buffer number
+set statusline +=%5*%{&ff}%*	"file format
+set statusline +=%4*\ %{''.(&fenc!=''?&fenc:&enc).''}\ 		"Encoding
+set statusline +=%4*%y%*	"file type
+set statusline +=%1*%r%*	"[RO] readonly flag
+set statusline +=%8*\ %{gitbranch#name()}
+set statusline +=%2*\ %<%F%*	"full path
+set statusline +=%2*%m%*	"modified flag
+set statusline +=%1*%=		"align to right from now on
+set statusline +=%3*%5l%*	"current line
+set statusline +=%8*/%L%*	"total lines
+set statusline +=%3*\ %v\ %*	"virtual column number
+set statusline +=%5*0x%04B\ %*	"character under cursor
+set statusline +=%5*%b\ %*	"character under cursor
+set laststatus =2
+
+"
+"Plugins
+"
+call plug#begin()
+Plug 'justinmk/vim-syntax-extra'
+Plug 'itchyny/vim-gitbranch'
+Plug 'adelarsq/vim-matchit'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-entire'
+Plug 'tpope/vim-commentary'
+"Plug 'tomtom/tcomment_vim'
+Plug 'elzr/vim-json'
+Plug 'inkarkat/vim-ReplaceWithRegister'
+Plug 'pboettch/vim-cmake-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'guns/xterm-color-table.vim'
+
+
+call plug#end()
+

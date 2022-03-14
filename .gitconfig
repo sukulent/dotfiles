@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = sukulent
+	email = 74241759+sukulent@users.noreply.github.com
+[credential]
+	credentialStore = gpg
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[init]
+	defaultBranch = master

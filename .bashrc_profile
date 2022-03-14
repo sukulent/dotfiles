@@ -1,0 +1,5 @@
+
+
+#use my .bashrc when in tty
+source /home/sukulent/.bashrc
+
