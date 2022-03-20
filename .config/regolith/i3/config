@@ -38,6 +38,7 @@ hide_edge_borders smart
 #New windows will not receive automatic focus
 no_focus [window_role="pop-up"]
 
+focus_on_window_activation urgent
 
 
 ## Launch // Terminal // <Super> Enter ##

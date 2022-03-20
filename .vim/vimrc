@@ -200,7 +200,7 @@ colorscheme PaperColor
 "colorscheme disco
 "set termguicolors
 
-"statusline settings 
+"statusline settings
 
 "show partial commands, it can't be incorporated to status line to my knowledge
 set showcmd
@@ -251,6 +251,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-entire'
+Plug 'lucapette/vim-textobj-underscore'
+Plug 'vim-scripts/matchit.zip'
 Plug 'tpope/vim-commentary'
 "Plug 'tomtom/tcomment_vim'
 Plug 'elzr/vim-json'
@@ -261,4 +263,3 @@ Plug 'guns/xterm-color-table.vim'
 
 
 call plug#end()
-
