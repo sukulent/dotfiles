@@ -241,25 +241,30 @@ set laststatus =2
 "Plugins
 "
 call plug#begin()
-Plug 'justinmk/vim-syntax-extra'
+
 Plug 'itchyny/vim-gitbranch'
+Plug 'tpope/vim-fugitive'
+
 Plug 'adelarsq/vim-matchit'
+Plug 'vim-scripts/matchit.zip'
+Plug 'inkarkat/vim-ReplaceWithRegister'
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+"Plug 'tomtom/tcomment_vim'
+
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-entire'
 Plug 'lucapette/vim-textobj-underscore'
-Plug 'vim-scripts/matchit.zip'
-Plug 'tpope/vim-commentary'
-"Plug 'tomtom/tcomment_vim'
+
 Plug 'elzr/vim-json'
-Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'pboettch/vim-cmake-syntax'
 Plug 'pangloss/vim-javascript'
-Plug 'guns/xterm-color-table.vim'
+Plug 'justinmk/vim-syntax-extra'
 
+Plug 'guns/xterm-color-table.vim'
 
 call plug#end()
