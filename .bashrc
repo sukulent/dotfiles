@@ -123,7 +123,7 @@ export PATH="$PATH:$HOME/bin:$HOME/.poetry/bin"
 alias dotfilesgit='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 
 #source git tab completition
-source /usr/share/bash-completion/completions/git
+#source /usr/share/bash-completion/completions/git
 
 #set default editor to vim :P
 export EDITOR=vim
