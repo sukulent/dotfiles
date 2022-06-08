@@ -213,14 +213,14 @@ fileviewer *.flac soxi
 "         \ ffprobe -pretty %c 2>&1
 
 " Web
-filextype *.html,*.htm
-        \ {Open with dwb}
-        \ dwb %f %i &,
-        \ {Open with firefox}
-        \ firefox %f &,
-        \ {Open with uzbl}
-        \ uzbl-browser %f %i &,
-filetype *.html,*.htm links, lynx
+"filextype *.html,*.htm
+"        \ {Open with dwb}
+"        \ dwb %f %i &,
+"        \ {Open with firefox}
+"        \ firefox %f &,
+"        \ {Open with uzbl}
+"        \ uzbl-browser %f %i &,
+"filetype *.html,*.htm links, lynx
 
 " Object
 filetype *.o nm %f | less
@@ -232,11 +232,11 @@ fileviewer *.[1-8] man ./%c | col -b
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
-        \ sxiv %f,
+        \ sxiv %f &,
         \ {View in gpicview}
-        \ gpicview %c,
+        \ gpicview %c &,
         \ {View in shotwell}
-        \ shotwell,
+        \ shotwell &,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
          \ convert -identify %f -verbose /dev/null
 
@@ -607,3 +607,16 @@ filetype *.deb
 	\ {Install with gdebi}
 	\ gdebi %c,
 fileviewer *.deb als %c
+
+" Web
+filetype *.html,*.htm
+	\ {Open in vim}
+	\ vim %f,
+"	\ links, lynx
+filextype *.html,*.htm
+        \ {Open with firefox}
+        \ firefox_custom %f &,
+        \ {Open with dwb}
+        \ dwb %f %i &,
+        \ {Open with uzbl}
+        \ uzbl-browser %f %i &,
